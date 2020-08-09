@@ -1,4 +1,4 @@
-RawGoldTracker = LibStub("AceAddon-3.0"):NewAddon("RawGoldTracker", "AceConsole-3.0")
+RawGoldTracker = LibStub("AceAddon-3.0"):NewAddon("RawGoldTracker", "AceEvent-3.0")
 
 function RawGoldTracker:GetMyMessage(info)
     return self.db.profile.greeting

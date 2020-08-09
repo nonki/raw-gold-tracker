@@ -2,6 +2,7 @@
 ## Title: Raw Gold Tracker
 ## Author: Nonki
 ## Version: 0.1
+## SavedVariables: RawGoldTrackerDB
 
 embeds.xml
 

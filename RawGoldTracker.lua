@@ -1,15 +1,23 @@
 RawGoldTracker = LibStub("AceAddon-3.0"):NewAddon("RawGoldTracker", "AceConsole-3.0")
 
 function RawGoldTracker:GetMyMessage(info)
-    return 'hi'
+    return self.db.profile.greeting
 end
 
 function RawGoldTracker:SetMyMessage(info, input)
-    myMessage = input
+    self.db.profile.greeting = input
 end
 
 function RawGoldTracker:OnInitialize()
-    RawGoldTracker:Print("Hello, World!")
+    local defaults = {
+        profile = {
+            greeting = 'Wassup, Bitch'
+        }
+    }
+
+    self.db = LibStub("AceDB-3.0"):New("RawGoldTrackerDB", defaults)
+
+    RawGoldTracker:Print(RawGoldTracker:GetMyMessage())
 
     local options = {
         name = "RawGoldTracker",

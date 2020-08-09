@@ -1,4 +1,6 @@
-RawGoldTracker = LibStub("AceAddon-3.0"):NewAddon("RawGoldTracker", "AceEvent-3.0", "AceConsole-3.0")
+local addonName, addon = ...
+
+RawGoldTracker = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceEvent-3.0", "AceConsole-3.0")
 
 function RawGoldTracker:GetMyMessage(_)
     return self.db.profile.greeting
@@ -15,16 +17,16 @@ function RawGoldTracker:OnInitialize()
 
     self.db = LibStub("AceDB-3.0"):New("RawGoldTrackerDB", defaults)
 
-    RawGoldTracker:Print(RawGoldTracker:GetMyMessage())
+    self:Print(self:GetMyMessage())
 
     local options = {
-        name = "RawGoldTracker",
+        name = addonName,
         handler = RawGoldTracker,
         type = 'group',
         args = { },
     }
 
-    LibStub("AceConfig-3.0"):RegisterOptionsTable("RawGoldTracker", options, {"rgt", "rawgoldtracker"})
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, options, {"rgt", "rawgoldtracker"})
 end
 
 function RawGoldTracker.OnEnable()

@@ -10,9 +10,7 @@ end
 
 function RawGoldTracker:OnInitialize()
     local defaults = {
-        profile = {
-            greeting = 'Wassup, Bitch'
-        }
+        profile = { },
     }
 
     self.db = LibStub("AceDB-3.0"):New("RawGoldTrackerDB", defaults)
@@ -23,21 +21,13 @@ function RawGoldTracker:OnInitialize()
         name = "RawGoldTracker",
         handler = RawGoldTracker,
         type = 'group',
-        args = {
-            msg = {
-                type = 'input',
-                name = 'My Message',
-                desc = 'The message for my addon',
-                set = 'SetMyMessage',
-                get = 'GetMyMessage',
-            },
-        },
+        args = { },
     }
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable("RawGoldTracker", options, {"rgt"})
 end
 
-function RawGoldTracker.OnEnable()
+function RawGoldTracker:OnEnable()
 end
 
 function RawGoldTracker.OnDisable()

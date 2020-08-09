@@ -1,0 +1,3 @@
+test:
+	set -eux
+	luacheck .

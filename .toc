@@ -1,0 +1,6 @@
+## Interface: 80205
+## Title: Raw Gold Tracker
+## Author: Nonki
+## Version: 0.1
+
+main.lua

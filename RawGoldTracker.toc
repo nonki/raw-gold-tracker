@@ -3,4 +3,6 @@
 ## Author: Nonki
 ## Version: 0.1
 
-main.lua
+embeds.xml
+
+RawGoldTracker.lua

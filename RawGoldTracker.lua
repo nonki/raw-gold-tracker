@@ -24,7 +24,7 @@ function RawGoldTracker:OnInitialize()
         args = { },
     }
 
-    LibStub("AceConfig-3.0"):RegisterOptionsTable("RawGoldTracker", options, {"rgt"})
+    LibStub("AceConfig-3.0"):RegisterOptionsTable("RawGoldTracker", options, {"rgt", "rawgoldtracker"})
 end
 
 function RawGoldTracker:OnEnable()

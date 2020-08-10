@@ -4,5 +4,6 @@ exclude_files = {
 
 globals = {
     "RawGoldTracker",
-    "LibStub"
+    "LibStub",
+    "GetAddOnMetadata",
 }

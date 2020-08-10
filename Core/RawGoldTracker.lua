@@ -1,10 +1,17 @@
 local addonName, addon = ...
 
-addon = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceEvent-3.0", "AceConsole-3.0")
-RawGoldTracker = addon
+local R = RawGoldTracker
 
-function RawGoldTracker:OnInitialize()
-    self.version = GetAddOnMetadata(addonName, "version")
+-- Upvalues
+local string = string
+local tostring = tostring
+local LibStub = LibStub
+
+--
+-- Lifecyle
+--
+
+function R:OnInitialize()
 
     local items = function()
         local args = {}
@@ -32,20 +39,20 @@ function RawGoldTracker:OnInitialize()
 
     local options = {
         name = addonName,
-        handler = addon,
+        handler = R,
         type = "group",
         get = function(info)
-            return addon.db.global.Config[info[#info]]
+            return self.db.global.Config[info[#info]]
         end,
         set = function(info, value)
-            addon.db.global.Config[info[#info]] = value
-            addon:Debug(info[#info].." set to: "..tostring(value))
+            self.db.global.Config[info[#info]] = value
+            self:Debug(info[#info].." set to: "..tostring(value))
         end,
         args = {
             General = {
                 name = "General Settings",
                 type = "group",
-                desc = function() return string.format("Version: %s %s", addonName, addon.version) end,
+                desc = function() return string.format("Version: %s %s", addonName, self.VERSION) end,
                 args = {
                     GeneralHeader = {
                         type = "header",
@@ -65,11 +72,11 @@ function RawGoldTracker:OnInitialize()
                 name = "Item Settings",
                 type = "group",
                 get = function(info)
-                    return addon.db.global.Items[info[#info]]
+                    return self.db.global.Items[info[#info]]
                 end,
                 set = function(info, value)
-                    addon.db.global.Items[info[#info]] = value
-                    addon:Debug(info[#info].." set to: "..tostring(value))
+                    self.db.global.Items[info[#info]] = value
+                    self:Debug(info[#info].." set to: "..tostring(value))
                 end,
                 args = items(),
             },
@@ -99,20 +106,20 @@ function RawGoldTracker:OnInitialize()
     self:Debug("Loaded successfully")
 end
 
-function RawGoldTracker.OnEnable()
+function R.OnEnable()
 end
 
-function RawGoldTracker.OnDisable()
+function R.OnDisable()
 end
 
-function RawGoldTracker:Debug(...)
+function R:Debug(...)
     if self.db.global.Config.Debug then self:Print("DEBUG:", ...) end
 end
 
-function RawGoldTracker:Info(...)
+function R:Info(...)
     self:Print("INFO:", ...)
 end
 
-function RawGoldTracker:Error(...)
+function R:Error(...)
     self:Print("ERROR:", ...)
 end

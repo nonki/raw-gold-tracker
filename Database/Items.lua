@@ -38,14 +38,14 @@ I.INSTANCES = {
             C.INSTANCE_DIFFICULTIES.MYTHIC_RAID,
         },
     },
-    --["SKYREACH"] = {
-    --    name = "Skyreach",
-    --    category = C.ITEM_CATEGORIES.WOD,
-    --    versions = {
-    --        C.INSTANCE_DIFFICULTIES.NORMAL_DUNGEON,
-    --        C.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON,
-    --    },
-    --},
+    ["SKYREACH"] = {
+        name = "Skyreach",
+        category = C.ITEM_CATEGORIES.WOD,
+        versions = {
+            C.INSTANCE_DIFFICULTIES.NORMAL_DUNGEON,
+            C.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON,
+        },
+    },
     -- MOP
     ["SoO"] = {
         name = "Siege of Orgrimmar",
@@ -106,7 +106,7 @@ I.INSTANCES = {
 }
 
 I.INSTANCES_INDEX = {
-    "HFC", "BRF", "HM", "SKYREACH", "SoO", "ToT", "TOES", "MSV", "DS", "FL"
+    "HFC", "BRF", "HM", "SoO", "ToT", "TOES", "MSV", "DS", "FL"
 }
 
 addon.items = I

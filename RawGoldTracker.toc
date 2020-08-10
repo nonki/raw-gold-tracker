@@ -6,7 +6,9 @@
 
 embeds.xml
 
+Core\Init.lua
+
 Database\SharedConstants.lua
 Database\Items.lua
 
-RawGoldTracker.lua
+Core\RawGoldTracker.lua

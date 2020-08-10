@@ -8,22 +8,23 @@ function RawGoldTracker:OnInitialize()
 
     local items = function()
         local args = {}
-        local items = 0
-        for key, item in pairs(addon.items.INSTANCES) do
-            items = items + 1
+        for i = 1, #addon.items.INSTANCES_INDEX do
+            local key = addon.items.INSTANCES_INDEX[i]
+            local item = addon.items.INSTANCES[key]
             args[key] = {
                 type = "header",
                 name = item.name,
-                order = items
+                order = i
             }
 
-           for i, version in pairs(item.versions) do
-               args[key.."_"..version] = {
+            for x = 1, #item.versions do
+                local version = item.versions[x]
+                args[key.."_"..version] = {
                    type = "toggle",
                    name = addon.constants.INSTANCE_DIFFICULTIES_STRINGS[version],
-                   order = items + (i / 10)
-               }
-           end
+                   order = i + (x / 100)
+                }
+            end
         end
 
         return args

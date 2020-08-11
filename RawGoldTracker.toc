@@ -11,6 +11,9 @@ Core\Init.lua
 Database\SharedConstants.lua
 Database\Items.lua
 
+Util\Toon.lua
+
 Core\Logging.lua
+Core\Tracking.lua
 
 Core\RawGoldTracker.lua

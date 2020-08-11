@@ -72,11 +72,11 @@ function R:OnInitialize()
                 name = "Item Settings",
                 type = "group",
                 get = function(info)
-                    return self.db.global.Items[info[#info]]
+                    return self.db.global.Items[info[#info]].isTracked
                 end,
                 set = function(info, value)
-                    self.db.global.Items[info[#info]] = value
-                    self.Log:Debug(info[#info].." set to: "..tostring(value))
+                    self.db.global.Items[info[#info]].isTracked = value
+                    self.Log.Debug(info[#info].." set to: "..tostring(value))
                 end,
                 args = items(),
             },
@@ -89,21 +89,24 @@ function R:OnInitialize()
                 ['*'] = true
             },
             Items = {
-                ['*'] = true
+                ['*'] = {
+                    isTracked = true,
+                    isCompleted = false,
+                }
             },
         },
     }
 
     self.db = LibStub("AceDB-3.0"):New("RawGoldTrackerDB", defaults)
 
-    self.Log:Debug("Initializing addon...")
+    self.Log.Debug("Initializing addon...")
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, options, {"rgt", "rawgoldtracker"})
     local AceConfigDialog = LibStub("AceConfigDialog-3.0")
     AceConfigDialog:AddToBlizOptions(addonName, nil, nil, "General")
     AceConfigDialog:AddToBlizOptions(addonName, "Items", addonName, "Items")
 
-    self.Log:Debug("Loaded successfully")
+    self.Log.Debug("Loaded successfully")
 end
 
 function R.OnEnable()

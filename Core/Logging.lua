@@ -5,7 +5,7 @@ local format = format
 
 local L = {}
 
-function L:Debug(s, ...)
+function L.Debug(s, ...)
     if not R.db.global.Config.Debug then return end
 
     if ... then
@@ -15,7 +15,7 @@ function L:Debug(s, ...)
     R:Print("DEBUG:", s)
 end
 
-function L:Info(s, ...)
+function L.Info(s, ...)
     if ... then
         return R:Print(format("INFO: "..s, ...))
     end
@@ -23,7 +23,7 @@ function L:Info(s, ...)
     R:Print("INFO:", s)
 end
 
-function L:Error(s, ...)
+function L.Error(s, ...)
     if ... then
         return R:Print(format("ERROR: "..s, ...))
     end

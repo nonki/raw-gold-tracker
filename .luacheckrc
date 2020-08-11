@@ -6,4 +6,5 @@ globals = {
     "RawGoldTracker",
     "LibStub",
     "GetAddOnMetadata",
+    "format",
 }

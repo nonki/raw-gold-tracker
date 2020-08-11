@@ -46,7 +46,7 @@ function R:OnInitialize()
         end,
         set = function(info, value)
             self.db.global.Config[info[#info]] = value
-            self:Debug(info[#info].." set to: "..tostring(value))
+            self.Log:Debug(info[#info].." set to: "..tostring(value))
         end,
         args = {
             General = {
@@ -76,7 +76,7 @@ function R:OnInitialize()
                 end,
                 set = function(info, value)
                     self.db.global.Items[info[#info]] = value
-                    self:Debug(info[#info].." set to: "..tostring(value))
+                    self.Log:Debug(info[#info].." set to: "..tostring(value))
                 end,
                 args = items(),
             },
@@ -96,30 +96,18 @@ function R:OnInitialize()
 
     self.db = LibStub("AceDB-3.0"):New("RawGoldTrackerDB", defaults)
 
-    self:Debug("Initializing addon...")
+    self.Log:Debug("Initializing addon...")
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, options, {"rgt", "rawgoldtracker"})
     local AceConfigDialog = LibStub("AceConfigDialog-3.0")
     AceConfigDialog:AddToBlizOptions(addonName, nil, nil, "General")
     AceConfigDialog:AddToBlizOptions(addonName, "Items", addonName, "Items")
 
-    self:Debug("Loaded successfully")
+    self.Log:Debug("Loaded successfully")
 end
 
 function R.OnEnable()
 end
 
 function R.OnDisable()
-end
-
-function R:Debug(...)
-    if self.db.global.Config.Debug then self:Print("DEBUG:", ...) end
-end
-
-function R:Info(...)
-    self:Print("INFO:", ...)
-end
-
-function R:Error(...)
-    self:Print("ERROR:", ...)
 end

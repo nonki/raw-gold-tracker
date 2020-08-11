@@ -8,7 +8,7 @@ I.INSTANCES = {
     ["HFC"] = {
         name = "Hellfire Citadel",
         id = 1448,
-        category = C.ITEM_CATEGORIES.WOD,
+        category = C.EXPANSIONS.WOD,
         versions = {
             C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
@@ -19,7 +19,7 @@ I.INSTANCES = {
     ["BRF"] = {
         name = "Blackrock Foundry",
         id = 1205,
-        category = C.ITEM_CATEGORIES.WOD,
+        category = C.EXPANSIONS.WOD,
         versions = {
             C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
@@ -30,7 +30,7 @@ I.INSTANCES = {
     ["HM"] = {
         name = "Highmaul",
         id = 1228,
-        category = C.ITEM_CATEGORIES.WOD,
+        category = C.EXPANSIONS.WOD,
         versions = {
             C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
@@ -40,7 +40,7 @@ I.INSTANCES = {
     },
     ["SKYREACH"] = {
         name = "Skyreach",
-        category = C.ITEM_CATEGORIES.WOD,
+        category = C.EXPANSIONS.WOD,
         versions = {
             C.INSTANCE_DIFFICULTIES.NORMAL_DUNGEON,
             C.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON,
@@ -50,7 +50,7 @@ I.INSTANCES = {
     ["SoO"] = {
         name = "Siege of Orgrimmar",
         id = 1136,
-        category = C.ITEM_CATEGORIES.MOP,
+        category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
@@ -61,7 +61,7 @@ I.INSTANCES = {
     ["ToT"] = {
         name = "Throne of Thunder",
         id = 1098,
-        category = C.ITEM_CATEGORIES.MOP,
+        category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
@@ -70,7 +70,7 @@ I.INSTANCES = {
     ["TOES"] = {
         name = "Terrace of Endless Spring",
         id = 996,
-        category = C.ITEM_CATEGORIES.MOP,
+        category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
@@ -79,7 +79,7 @@ I.INSTANCES = {
     ["MSV"] = {
         name = "Mogu'shan Vaults",
         id = 1008,
-        category = C.ITEM_CATEGORIES.MOP,
+        category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
@@ -89,7 +89,7 @@ I.INSTANCES = {
     ["DS"] = {
         name = "Dragon Soul",
         id = 967,
-        category = C.ITEM_CATEGORIES.CATA,
+        category = C.EXPANSIONS.CATA,
         versions = {
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
         },
@@ -97,7 +97,7 @@ I.INSTANCES = {
     ["FL"] = {
         name = "Firelands",
         id = 720,
-        category = C.ITEM_CATEGORIES.CATA,
+        category = C.EXPANSIONS.CATA,
         versions = {
             C.INSTANCE_DIFFICULTIES.RAID_25_NORMAL,
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,

@@ -2,7 +2,7 @@ local _, addon = ...
 
 local C = addon.constants or {}
 
-C.ITEM_CATEGORIES = {
+C.EXPANSIONS = {
     CLASSIC = "BASE",
     TBC     = "TBC",
     WOTLK   = "WOTLK",

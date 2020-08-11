@@ -80,6 +80,16 @@ function R:OnInitialize()
                 end,
                 args = items(),
             },
+            Debug = {
+                name = "debug",
+                type = "input",
+                get = function(itemId)
+                    return self.Tracking.DebugItem(itemId)
+                end,
+                set = function(info, itemId)
+                    return self.Tracking.DebugItem(itemId)
+                end
+            },
         },
     }
 

@@ -15,5 +15,6 @@ Util\Toon.lua
 
 Core\Logging.lua
 Core\Tracking.lua
+Core\Events.lua
 
 Core\RawGoldTracker.lua

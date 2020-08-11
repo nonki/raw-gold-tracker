@@ -72,10 +72,10 @@ function R:OnInitialize()
                 name = "Item Settings",
                 type = "group",
                 get = function(info)
-                    return self.db.global.Items[info[#info]].isTracked
+                    return self.db.char.Items[info[#info]].isTracked
                 end,
                 set = function(info, value)
-                    self.db.global.Items[info[#info]].isTracked = value
+                    self.db.char.Items[info[#info]].isTracked = value
                     self.Log.Debug(info[#info].." set to: "..tostring(value))
                 end,
                 args = items(),
@@ -86,7 +86,7 @@ function R:OnInitialize()
                 get = function(itemId)
                     return self.Tracking.DebugItem(itemId)
                 end,
-                set = function(info, itemId)
+                set = function(_, itemId)
                     return self.Tracking.DebugItem(itemId)
                 end
             },
@@ -98,6 +98,8 @@ function R:OnInitialize()
             Config = {
                 ['*'] = true
             },
+        },
+        char = {
             Items = {
                 ['*'] = {
                     isTracked = true,
@@ -115,6 +117,8 @@ function R:OnInitialize()
     local AceConfigDialog = LibStub("AceConfigDialog-3.0")
     AceConfigDialog:AddToBlizOptions(addonName, nil, nil, "General")
     AceConfigDialog:AddToBlizOptions(addonName, "Items", addonName, "Items")
+
+    self.Events.RegisterEvents()
 
     self.Log.Debug("Loaded successfully")
 end

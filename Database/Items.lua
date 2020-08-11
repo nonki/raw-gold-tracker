@@ -109,4 +109,10 @@ I.INSTANCES_INDEX = {
     "HFC", "BRF", "HM", "SoO", "ToT", "TOES", "MSV", "DS", "FL"
 }
 
+I.SAVED_INSTANCES_LOOKUP = {
+    ["Blackrock Foundry"] = "BRF",
+    ["Hellfire Citadel"] = "HFC",
+    ["Highmaul"] = "HM",
+}
+
 addon.items = I

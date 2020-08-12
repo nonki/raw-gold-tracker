@@ -34,6 +34,7 @@ end
 function T.CompleteItem(itemId)
     local item = T.GetItem(itemId)
     item.isCompleted = true
+    R.Log.Debug("Completed %s", itemId)
 end
 
 function T.IsItemCompleted(itemId)
@@ -43,6 +44,7 @@ end
 function T.UncompleteItem(itemId)
     local item = T.GetItem(itemId)
     item.isCompleted = false
+    R.Log.Debug("Uncompleted %s", itemId)
 end
 
 function T.DebugItem(itemId)
@@ -67,18 +69,16 @@ function T.ScanInstanceLock(index)
         _, _, _, _, _, _, totalEncounters, encountersFinished =
             GetSavedInstanceInfo(index)
 
-    if instanceReset <= 0 then return end
-
-    if totalEncounters > encountersFinished then return end
-
     local instanceKey = addon.items.SAVED_INSTANCES_LOOKUP[instanceName]
 
     if not instanceKey then return end
 
     local itemId = instanceKey .. "_" .. tostring(instanceDifficulty)
-    T.CompleteItem(itemId)
+    if instanceReset <= 0 then return T.UncompleteItem(itemId) end
 
-    R.Log.Debug("Completed %s", itemId)
+    if totalEncounters > encountersFinished then return T.UncompleteItem(itemId) end
+
+    T.CompleteItem(itemId)
 end
 
 RawGoldTracker.Tracking = T

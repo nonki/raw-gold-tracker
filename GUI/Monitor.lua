@@ -1,4 +1,4 @@
-local addonName, addon = ...
+local addonName, _ = ...
 
 local R = RawGoldTracker
 
@@ -24,6 +24,7 @@ local function RenderCharacter(container, _)
 
             container:AddChild(l)
             break
+        --luacheck: ignore
         until true
     end
 end

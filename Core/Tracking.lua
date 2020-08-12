@@ -31,7 +31,6 @@ function T.GetTrackedItems()
     return trackedItems
 end
 
-
 function T.TrackItem(itemId)
     R.Log.Debug(itemId.." tracked")
     local item = T.GetItem(itemId)

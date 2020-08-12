@@ -1,4 +1,4 @@
-local addonName, _ = ...
+local addonName, addon = ...
 
 local R = RawGoldTracker
 
@@ -8,10 +8,21 @@ local AceGUI = LibStub("AceGUI-3.0")
 
 local function RenderCharacter(container, _)
     container:ReleaseChildren()
-    local items = R.Tracking.GetTrackedItems()
+    local items = R.Tracking.GetAllTrackedItems()
     for k, v in pairs(items) do
         local l = AceGUI:Create("Label")
-        l:SetText(k)
+        local instance, version = nil
+
+        -- horrible hack, please remove
+        for inst, vers in k:gmatch("([^_]+)_([0-9]+)") do
+            instance = tostring(inst)
+            version = tonumber(vers)
+        end
+
+        local niceItem = addon.items.INSTANCES[instance].name
+        local niceVersion = addon.constants.INSTANCE_DIFFICULTIES_STRINGS[version]
+
+        l:SetText(format("%s - %s", niceItem, niceVersion))
         l:SetFullWidth(true)
 
         if v.isCompleted then

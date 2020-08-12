@@ -10,7 +10,7 @@ I.INSTANCES = {
         id = 1448,
         category = C.EXPANSIONS.WOD,
         versions = {
-            C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
+            C.INSTANCE_DIFFICULTIES.LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
             C.INSTANCE_DIFFICULTIES.HEROIC_RAID,
             C.INSTANCE_DIFFICULTIES.MYTHIC_RAID,
@@ -21,7 +21,7 @@ I.INSTANCES = {
         id = 1205,
         category = C.EXPANSIONS.WOD,
         versions = {
-            C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
+            C.INSTANCE_DIFFICULTIES.LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
             C.INSTANCE_DIFFICULTIES.HEROIC_RAID,
             C.INSTANCE_DIFFICULTIES.MYTHIC_RAID,
@@ -32,7 +32,7 @@ I.INSTANCES = {
         id = 1228,
         category = C.EXPANSIONS.WOD,
         versions = {
-            C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
+            C.INSTANCE_DIFFICULTIES.LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
             C.INSTANCE_DIFFICULTIES.HEROIC_RAID,
             C.INSTANCE_DIFFICULTIES.MYTHIC_RAID,
@@ -52,7 +52,7 @@ I.INSTANCES = {
         id = 1136,
         category = C.EXPANSIONS.MOP,
         versions = {
-            C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
+            C.INSTANCE_DIFFICULTIES.LFR,
             C.INSTANCE_DIFFICULTIES.NORMAL_RAID,
             C.INSTANCE_DIFFICULTIES.HEROIC_RAID,
             C.INSTANCE_DIFFICULTIES.MYTHIC_RAID,
@@ -63,7 +63,7 @@ I.INSTANCES = {
         id = 1098,
         category = C.EXPANSIONS.MOP,
         versions = {
-            C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
+            C.INSTANCE_DIFFICULTIES.LFR,
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
         },
     },
@@ -72,7 +72,7 @@ I.INSTANCES = {
         id = 996,
         category = C.EXPANSIONS.MOP,
         versions = {
-            C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
+            C.INSTANCE_DIFFICULTIES.LFR,
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
         },
     },
@@ -81,7 +81,7 @@ I.INSTANCES = {
         id = 1008,
         category = C.EXPANSIONS.MOP,
         versions = {
-            C.INSTANCE_DIFFICULTIES.LEGACY_LFR,
+            C.INSTANCE_DIFFICULTIES.LFR,
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
         },
     },
@@ -106,13 +106,19 @@ I.INSTANCES = {
 }
 
 I.INSTANCES_INDEX = {
-    "HFC", "BRF", "HM", "SoO", "ToT", "TOES", "MSV", "DS", "FL"
+    "HFC", "BRF", "HM",  "SKYREACH", "SoO", "ToT", "TOES", "MSV", "DS", "FL"
 }
 
 I.SAVED_INSTANCES_LOOKUP = {
     ["Blackrock Foundry"] = "BRF",
     ["Hellfire Citadel"] = "HFC",
     ["Highmaul"] = "HM",
+    ["Siege of Orgrimmar"] = "SoO",
+    ["Throne of Thunder"] = "ToT",
+    ["Terrace of the Endless Spring"] = "TOES",
+    ["Mogu'shan Vaults"] = "MSV",
+    ["Dragon Soul"] = "DS",
+    ["Firelands"] = "FL",
 }
 
 addon.items = I

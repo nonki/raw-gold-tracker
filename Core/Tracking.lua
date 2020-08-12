@@ -14,19 +14,32 @@ function T.IsItemTracked(itemId)
 end
 
 function T.GetItem(itemId)
-    return R.db.char.Items[itemId]
+    return R.db.profile.Items[itemId]
 end
 
 function T.GetItems()
-    return R.db.char.Items
+    return R.db.profile.Items
 end
 
+function T.GetTrackedItems()
+    local trackedItems = {}
+    local allItems = T.GetItems()
+    for k, v in pairs(allItems) do
+        if v.isTracked then trackedItems[k] = v end
+    end
+
+    return trackedItems
+end
+
+
 function T.TrackItem(itemId)
+    R.Log.Debug(itemId.." tracked")
     local item = T.GetItem(itemId)
     item.isTracked = true
 end
 
 function T.UntrackItem(itemId)
+    R.Log.Debug(itemId.." untracked")
     local item = T.GetItem(itemId)
     item.isTracked = false
 end

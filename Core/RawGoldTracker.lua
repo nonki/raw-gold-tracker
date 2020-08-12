@@ -11,7 +11,20 @@ local LibStub = LibStub
 -- Lifecyle
 --
 
+--luacheck: no unused args
 function R:OnInitialize()
+end
+
+function R:OnEnable()
+    local defaults = {
+        global = {
+            Config = {
+                ['*'] = true
+            },
+        },
+    }
+
+    self.db = LibStub("AceDB-3.0"):New("RawGoldTrackerDB", defaults)
 
     local items = function()
         local args = {}
@@ -46,7 +59,7 @@ function R:OnInitialize()
         end,
         set = function(info, value)
             self.db.global.Config[info[#info]] = value
-            self.Log:Debug(info[#info].." set to: "..tostring(value))
+            self.Log.Debug(info[#info].." set to: "..tostring(value))
         end,
         args = {
             General = {
@@ -72,11 +85,12 @@ function R:OnInitialize()
                 name = "Item Settings",
                 type = "group",
                 get = function(info)
-                    return self.db.char.Items[info[#info]].isTracked
+                    return R.Tracking.IsItemTracked(info[#info])
                 end,
                 set = function(info, value)
-                    self.db.char.Items[info[#info]].isTracked = value
-                    self.Log.Debug(info[#info].." set to: "..tostring(value))
+                    if value then return R.Tracking.TrackItem(info[#info]) end
+
+                    return R.Tracking.UntrackItem(info[#info])
                 end,
                 args = items(),
             },
@@ -100,25 +114,9 @@ function R:OnInitialize()
         },
     }
 
-    local defaults = {
-        global = {
-            Config = {
-                ['*'] = true
-            },
-        },
-        char = {
-            Items = {
-                ['*'] = {
-                    isTracked = true,
-                    isCompleted = false,
-                }
-            },
-        },
-    }
-
-    self.db = LibStub("AceDB-3.0"):New("RawGoldTrackerDB", defaults)
-
     self.Log.Debug("Initializing addon...")
+
+    self:InitializeItems()
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, options, {"rgt", "rawgoldtracker"})
     local AceConfigDialog = LibStub("AceConfigDialog-3.0")
@@ -130,8 +128,23 @@ function R:OnInitialize()
     self.Log.Debug("Loaded successfully")
 end
 
-function R.OnEnable()
+function R.OnDisable()
 end
 
-function R.OnDisable()
+function R:InitializeItems()
+    self.db.profile.Items = self.db.profile.Items or {}
+
+    for instance, item in pairs(addon.items.INSTANCES) do
+        for x = 1, #item.versions do
+            local version = item.versions[x]
+            local key = instance.."_"..version
+            self.db.profile.Items[key] = self.db.profile.Items[key] or {isTracked = true, isCompleted = false}
+        end
+    end
+end
+
+function R:DebugDB()
+    for k, v in pairs(self.db.profile.Items) do
+        print(format("%s: %s %s", k, tostring(v.isTracked), tostring(v.isCompleted)))
+    end
 end

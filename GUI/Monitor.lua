@@ -8,24 +8,19 @@ local AceGUI = LibStub("AceGUI-3.0")
 
 local function RenderCharacter(container, _)
     container:ReleaseChildren()
-    local items = R.Tracking.GetItems()
+    local items = R.Tracking.GetTrackedItems()
     for k, v in pairs(items) do
-        repeat
-            if not v.isTracked then break end
-            local l = AceGUI:Create("Label")
-            l:SetText(k)
-            l:SetFullWidth(true)
+        local l = AceGUI:Create("Label")
+        l:SetText(k)
+        l:SetFullWidth(true)
 
-            if v.isCompleted then
-                l:SetColor(0, 1, 0)
-            else
-                l:SetColor(1, 0, 0)
-            end
+        if v.isCompleted then
+            l:SetColor(0, 1, 0)
+        else
+            l:SetColor(1, 0, 0)
+        end
 
-            container:AddChild(l)
-            break
-        --luacheck: ignore
-        until true
+        container:AddChild(l)
     end
 end
 

@@ -90,6 +90,13 @@ function R:OnInitialize()
                     return self.Tracking.DebugItem(itemId)
                 end
             },
+            show = {
+                name = "show",
+                type = "execute",
+                func = function()
+                    R.Monitor:ShowFrame()
+                end,
+            },
         },
     }
 

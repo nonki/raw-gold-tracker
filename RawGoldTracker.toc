@@ -17,4 +17,6 @@ Core\Logging.lua
 Core\Tracking.lua
 Core\Events.lua
 
+GUI\Monitor.lua
+
 Core\RawGoldTracker.lua

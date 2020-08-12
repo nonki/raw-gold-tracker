@@ -17,6 +17,10 @@ function T.GetItem(itemId)
     return R.db.char.Items[itemId]
 end
 
+function T.GetItems()
+    return R.db.char.Items
+end
+
 function T.TrackItem(itemId)
     local item = T.GetItem(itemId)
     item.isTracked = true

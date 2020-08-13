@@ -8,6 +8,8 @@ I.INSTANCES = {
     ["HFC"] = {
         name = "Hellfire Citadel",
         id = 1448,
+        tier = 3,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.WOD,
         versions = {
             C.INSTANCE_DIFFICULTIES.LFR,
@@ -19,6 +21,8 @@ I.INSTANCES = {
     ["BRF"] = {
         name = "Blackrock Foundry",
         id = 1205,
+        tier = 2,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.WOD,
         versions = {
             C.INSTANCE_DIFFICULTIES.LFR,
@@ -30,6 +34,8 @@ I.INSTANCES = {
     ["HM"] = {
         name = "Highmaul",
         id = 1228,
+        tier = 1,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.WOD,
         versions = {
             C.INSTANCE_DIFFICULTIES.LFR,
@@ -41,6 +47,7 @@ I.INSTANCES = {
     ["SKYREACH"] = {
         name = "Skyreach",
         category = C.EXPANSIONS.WOD,
+        type = C.INSTANCE_TYPES.DUNGEON,
         versions = {
             C.INSTANCE_DIFFICULTIES.NORMAL_DUNGEON,
             C.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON,
@@ -50,6 +57,8 @@ I.INSTANCES = {
     ["SoO"] = {
         name = "Siege of Orgrimmar",
         id = 1136,
+        tier = 5,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LFR,
@@ -61,6 +70,8 @@ I.INSTANCES = {
     ["ToT"] = {
         name = "Throne of Thunder",
         id = 1098,
+        tier = 3,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LFR,
@@ -70,6 +81,8 @@ I.INSTANCES = {
     ["TOES"] = {
         name = "Terrace of Endless Spring",
         id = 996,
+        tier = 2,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LFR,
@@ -79,6 +92,8 @@ I.INSTANCES = {
     ["MSV"] = {
         name = "Mogu'shan Vaults",
         id = 1008,
+        tier = 1,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.MOP,
         versions = {
             C.INSTANCE_DIFFICULTIES.LFR,
@@ -89,6 +104,8 @@ I.INSTANCES = {
     ["DS"] = {
         name = "Dragon Soul",
         id = 967,
+        tier = 2,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.CATA,
         versions = {
             C.INSTANCE_DIFFICULTIES.RAID_25_HEROIC,
@@ -97,6 +114,8 @@ I.INSTANCES = {
     ["FL"] = {
         name = "Firelands",
         id = 720,
+        tier = 1,
+        type = C.INSTANCE_TYPES.RAID,
         category = C.EXPANSIONS.CATA,
         versions = {
             C.INSTANCE_DIFFICULTIES.RAID_25_NORMAL,

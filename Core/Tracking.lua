@@ -9,21 +9,30 @@ local GetSavedInstanceInfo = _G.GetSavedInstanceInfo
 
 local T = {}
 
-function T.IsItemTracked(itemId)
-    return T.GetItem(itemId).isTracked
+function T.GetToons()
+    return R.db.global.toons
 end
 
-function T.GetItem(itemId)
-    return R.db.profile.Items[itemId]
+function T.IsItemTracked(itemId, char)
+    local item = T.GetItem(itemId, char)
+    return item and item.isTracked
 end
 
-function T.GetItems()
-    return R.db.profile.Items
+function T.GetItem(itemId, char)
+    if char then return R.db.global.toons[char].items[itemId] end
+
+    return R.db.global.toons[addon.toon.id].items[itemId]
 end
 
-function T.GetTrackedItems()
+function T.GetItems(char)
+    if char then return R.db.global.toons[char].Items end
+
+    return R.db.global.toons[addon.toon.id].items
+end
+
+function T.GetTrackedItems(char)
     local trackedItems = {}
-    local allItems = T.GetItems()
+    local allItems = T.GetItems(char)
     for k, v in pairs(allItems) do
         if v.isTracked then trackedItems[k] = v end
     end
@@ -31,36 +40,43 @@ function T.GetTrackedItems()
     return trackedItems
 end
 
-function T.TrackItem(itemId)
+function T.UpdateItem(itemId, char, data)
+    R.Log.Debug("updating %s for %s", itemId, char or addon.toon.id)
+    local item = T.GetItem(itemId, char)
+
+    for k, v in pairs(data) do
+        item[k] = v
+    end
+end
+
+function T.TrackItem(itemId, char)
+    T.UpdateItem(itemId, char, {isTracked = true})
     R.Log.Debug(itemId.." tracked")
-    local item = T.GetItem(itemId)
-    item.isTracked = true
 end
 
-function T.UntrackItem(itemId)
+function T.UntrackItem(itemId, char)
+    T.UpdateItem(itemId, char, {isTracked = false})
     R.Log.Debug(itemId.." untracked")
-    local item = T.GetItem(itemId)
-    item.isTracked = false
 end
 
-function T.CompleteItem(itemId)
-    local item = T.GetItem(itemId)
-    item.isCompleted = true
+function T.CompleteItem(itemId, char)
+    T.UpdateItem(itemId, char, {isCompleted = true})
     R.Log.Debug("Completed %s", itemId)
 end
 
-function T.IsItemCompleted(itemId)
-    return T.GetItem(itemId).isCompleted
-end
-
-function T.UncompleteItem(itemId)
-    local item = T.GetItem(itemId)
-    item.isCompleted = false
+function T.UncompleteItem(itemId, char)
+    T.UpdateItem(itemId, char, {isCompleted = false})
     R.Log.Debug("Uncompleted %s", itemId)
 end
 
-function T.DebugItem(itemId)
-    local item = T.GetItem(itemId)
+function T.IsItemCompleted(itemId, char)
+    local item = T.GetItem(itemId, char)
+
+    return item and item.isCompleted
+end
+
+function T.DebugItem(itemId, char)
+    local item = T.GetItem(itemId, char)
     R.Log.Debug("isTracked: %s - IsCompleted: %s", tostring(item.isTracked), tostring(item.isCompleted))
 end
 

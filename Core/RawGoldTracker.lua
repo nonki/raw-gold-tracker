@@ -21,6 +21,16 @@ function R:OnEnable()
             Config = {
                 ['*'] = true
             },
+            toons = {
+                ['*'] = {
+                    items = {
+                        ['*'] = {
+                            isTracked = true,
+                            isCompleted = false
+                        }
+                    }
+                }
+            }
         },
     }
 
@@ -132,19 +142,16 @@ function R.OnDisable()
 end
 
 function R:InitializeItems()
-    self.db.profile.Items = self.db.profile.Items or {}
-
-    for instance, item in pairs(addon.items.INSTANCES) do
-        for x = 1, #item.versions do
-            local version = item.versions[x]
-            local key = instance.."_"..version
-            self.db.profile.Items[key] = self.db.profile.Items[key] or {isTracked = true, isCompleted = false}
-        end
-    end
+    self.db.global.toons[addon.toon.id].name = addon.toon.name
+    self.db.global.toons[addon.toon.id].realm = addon.toon.realm
+    self.db.global.toons[addon.toon.id].id = addon.toon.id
 end
 
 function R:DebugDB()
-    for k, v in pairs(self.db.profile.Items) do
-        print(format("%s: %s %s", k, tostring(v.isTracked), tostring(v.isCompleted)))
+    for k, v in pairs(self.db.global.toons) do
+        print(format("%s: %s %s", k, tostring(v.name), tostring(v.realm), tostring(v.id)))
+        for i, l in pairs(v.items) do
+            print(format("%s: %s", tostring(i), tostring(l.isTracked), tostring(l.isCompleted)))
+        end
     end
 end

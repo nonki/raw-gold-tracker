@@ -1,17 +1,16 @@
-local R = RawGoldTracker
-local U = R.Util or {}
+local _, addon = ...
 
 -- Upvalues
 local UnitName = _G.UnitName
 local UnitGUID = _G.UnitGUID
 local GetRealmName = _G.GetRealmName
 
-function U.ToonInfo()
+local function toonInfo()
     return {
-        playerName = UnitName("player"),
-        id = UnitGUID("player"),
+        name = UnitName("player"),
         realm = GetRealmName(),
+        id = UnitGUID("player"),
     }
 end
 
-RawGoldTracker.Util = U
+addon.toon = toonInfo()

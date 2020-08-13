@@ -6,44 +6,66 @@ local M = RawGoldTracker.Monitor or {}
 
 local AceGUI = LibStub("AceGUI-3.0")
 
-local function RenderCharacter(container, _)
+local function RenderCharacter(container, _, toonId)
     container:ReleaseChildren()
-    local items = R.Tracking.GetAllTrackedItems()
-    for k, v in pairs(items) do
-        local l = AceGUI:Create("Label")
-        local instance, version = nil
+    local items = {}
+    for i = 1, #addon.items.INSTANCES_INDEX do
+        local index = addon.items.INSTANCES_INDEX[i]
+        local instance = addon.items.INSTANCES[index]
 
-        -- horrible hack, please remove
-        for inst, vers in k:gmatch("([^_]+)_([0-9]+)") do
-            instance = tostring(inst)
-            version = tonumber(vers)
+        for x = 1, #instance.versions do
+            local version = instance.versions[x]
+            local itemId = index.."_"..version
+            local item = R.Tracking.GetItem(itemId, toonId)
+
+            if item.isTracked then
+                items[itemId] = {
+                    isCompleted = item.isCompleted,
+                    name = instance.name,
+                    version = version
+                }
+            end
         end
+    end
 
-        local niceItem = addon.items.INSTANCES[instance].name
-        local niceVersion = addon.constants.INSTANCE_DIFFICULTIES_STRINGS[version]
+    local groupedItems = {}
+    for _, item in pairs(items) do
+        groupedItems[item.name] = groupedItems[item.name] or {}
 
-        l:SetText(format("%s - %s", niceItem, niceVersion))
-        l:SetFullWidth(true)
+        table.insert(groupedItems[item.name], item)
+    end
 
-        if v.isCompleted then
-            l:SetColor(0, 1, 0)
-        else
-            l:SetColor(1, 0, 0)
+    for group, groupItems in pairs(groupedItems) do
+        local h = AceGUI:Create("Heading")
+        h:SetText(group)
+        h:SetFullWidth(true)
+        container:AddChild(h)
+        for _, item in pairs(groupItems) do
+            local c = AceGUI:Create("CheckBox")
+
+            c:SetLabel(format("%s", addon.constants.INSTANCE_DIFFICULTIES_STRINGS[item.version]))
+            c:SetValue(item.isCompleted)
+            c:SetDisabled(true)
+
+            container:AddChild(c)
         end
-
-        container:AddChild(l)
     end
 end
 
 --luacheck: no unused args
 function M:ShowFrame(parent)
     local t = AceGUI:Create("TabGroup")
-    local playerName = R.Util.ToonInfo().playerName
-    local tabs = {{text = playerName, value = playerName}}
+    local players = R.Tracking.GetToons()
+    local tabs = {}
+    for _, player in pairs(players) do
+        R.Log.Debug("adding tab for player %s - %s", player.name, player.id)
+        table.insert(tabs, {text = player.name, value = player.id})
+    end
+
     t:SetTabs(tabs)
     t:SetLayout("Flow")
     t:SetCallback("OnGroupSelected", RenderCharacter)
-    t:SelectTab(playerName)
+    t:SelectTab(addon.toon.id)
 
     if parent then return parent:AddChild(t) end
 

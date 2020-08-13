@@ -8,6 +8,18 @@ local AceGUI = LibStub("AceGUI-3.0")
 
 local function RenderCharacter(container, _, toonId)
     container:ReleaseChildren()
+
+    local scrollContainer = AceGUI:Create("SimpleGroup")
+    scrollContainer:SetFullWidth(true)
+    scrollContainer:SetFullHeight(true)
+    scrollContainer:SetLayout("Fill")
+    container:AddChild(scrollContainer)
+
+    local scroll = AceGUI:Create("ScrollFrame")
+    scroll:SetLayout("Flow")
+
+    scrollContainer:AddChild(scroll)
+
     local items = {}
     for i = 1, #addon.items.INSTANCES_INDEX do
         local index = addon.items.INSTANCES_INDEX[i]
@@ -39,7 +51,7 @@ local function RenderCharacter(container, _, toonId)
         local h = AceGUI:Create("Heading")
         h:SetText(group)
         h:SetFullWidth(true)
-        container:AddChild(h)
+        scroll:AddChild(h)
         for _, item in pairs(groupItems) do
             local c = AceGUI:Create("CheckBox")
 
@@ -47,7 +59,7 @@ local function RenderCharacter(container, _, toonId)
             c:SetValue(item.isCompleted)
             c:SetDisabled(true)
 
-            container:AddChild(c)
+            scroll:AddChild(c)
         end
     end
 end
@@ -58,8 +70,11 @@ function M:ShowFrame(parent)
     local players = R.Tracking.GetToons()
     local tabs = {}
     for _, player in pairs(players) do
-        R.Log.Debug("adding tab for player %s - %s", player.name, player.id)
-        table.insert(tabs, {text = player.name, value = player.id})
+        local trackedItems = R.Tracking.GetTrackedItems(player.id)
+        if next(trackedItems) or player.id == addon.toon.id then
+            R.Log.Debug("adding tab for player %s - %s", player.name, player.id)
+            table.insert(tabs, {text = player.name, value = player.id})
+        end
     end
 
     t:SetTabs(tabs)

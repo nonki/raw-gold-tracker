@@ -25,13 +25,14 @@ function T.GetItem(itemId, char)
 end
 
 function T.GetItems(char)
-    if char then return R.db.global.toons[char].Items end
+    if char then return R.db.global.toons[char].items end
 
     return R.db.global.toons[addon.toon.id].items
 end
 
 function T.GetTrackedItems(char)
     local trackedItems = {}
+    R.Log.Debug(char)
     local allItems = T.GetItems(char)
     for k, v in pairs(allItems) do
         if v.isTracked then trackedItems[k] = v end

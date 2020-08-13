@@ -25,7 +25,7 @@ function R:OnEnable()
                 ['*'] = {
                     items = {
                         ['*'] = {
-                            isTracked = true,
+                            isTracked = false,
                             isCompleted = false
                         }
                     }
